@@ -15,7 +15,7 @@ fragmented solution to the problem of unique researcher identity (URI) proposed 
 
 ## Approach
 1. Encapsulate the researcher ID inside the Idea class of Interplanetary Idea System (IPIS) https://github.com/open-science-org/IPIS
-- not feasible at it's current state
+- not feasible at its current state
 
 2. Use third party service such as CIVIC and LINK
 - CIVIC can be used as an authenticator
