@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <title>OSO IPFS POS Storage</title>
+    <script src="web3.min.js"></script>
+    <script src="ipfs.js"></script>
+
+    <script type="text/javascript">
+        var web3Host    = 'localhost',
+            web3Port    = '8545';
+
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider('http://' + web3Host + ':' + web3Port));
+        }
+
+        function getBalance(){
+            document.getElementById("myBalance").innerText = web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0]), "ether");
+        }
+
+        var ipfsHost    = 'localhost',
+            ipfsAPIPort = '5001',
+            ipfsWebPort = '8080';
+
+        var ipfs = window.IpfsApi(ipfsHost, ipfsAPIPort)
+
+        function addOsoLogoFile() {
+            var url = 'http://localhost:8081/logo.png'
+            window.ipfs.add(url, function(err, result) {
+                if (err) {
+                    console.error('Error sending file: ', err);
+                    return null;
+                } else if (result && result[0] && result[0].Hash) {
+                    var imageURL = window.ipfsDataHost + "/" + result[0].Hash;
+                    document.getElementById("ipfsHash").innerText = result[0].Hash;
+                    console.log('File: ', result[0].Hash);
+                    console.log(imageURL);
+                } else {
+                    console.error('No file for you...');
+                    return null;
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Interact with Ethereum Blockchain and IPFS POC Storage for POC Reference.</h1>
+
+    <button onclick="getBalance()">Get My Wallet Balance</button>
+    <span id="myBalance"></span> - in Ether
+
+    <button onclick="addOsoLogoFile()">Add OSO Logo to IPFS</button>
+    File - <span id="ipfsHash"></span> - IPFS Hash
+</body>
+</html>
