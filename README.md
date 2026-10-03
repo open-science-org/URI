@@ -1,3 +1,5 @@
+> **2026 update.** OSO restarted in October 2026. Researcher identity is now specified in [OIP-10: Ownership and identity](https://github.com/open-science-org/OIPs/blob/master/OIPS/oip-10.md), which uses ORCID sign-in and attestations instead of a custom identity contract. See the [OSO v1 design doc](https://github.com/open-science-org/OSO/blob/master/docs/design-v1.md). The content below is the original 2017–2018 work, kept for history.
+
 # URI
 
 Unique Researcher Identity
